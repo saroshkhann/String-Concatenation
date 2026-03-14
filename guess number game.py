@@ -15,6 +15,7 @@ def check_answer(user_guess, actual_number, turns):
     else:
         print(f"You got it! The answer was {actual_number}")
 
+
 def set_difficulty():
     level = input("Choose a difficulty. Type 'easy' or 'hard': ")
     if level == "easy":
@@ -52,8 +53,5 @@ def game():
             print("\n" * 20)
         if log == "n":
             return
-
-
-
 
 game()
