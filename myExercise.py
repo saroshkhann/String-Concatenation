@@ -51,6 +51,14 @@ def changepin(oldpin, npin, user):
     users_database[user]["PIN"] = npin
     print("PIN Changed successfully")
 
+def menu():
+    print("Press 1 to Withdraw money")
+    print("Press 2 to Deposit money")
+    print("Press 3 to Transfer money")
+    print("Press 4 to Check balance")
+    print("Press 5 to Check history")
+    print("Press 6 to Change PIN")
+
 is_on = True
 
 while is_on:
@@ -67,39 +75,45 @@ while is_on:
         PIN= int(input("Please enter your PIN: "))
 
         if user_pin == PIN:
-            choice = input("Do you want to withdraw/deposit/transfer/check balance?")
+            menu()
+            choice = int(input("Press the button of the operation"))
 
-            if choice == "withdraw":
+            if choice == 1:
+                print("\n"*20)
                 money = int(input("How much money you want to withdraw?"))
                 withdrawn_amount = withdraw_money(money, user_name)
                 print(f"You have withdrawn {money}PKR from Your Account")
                 users_database[user_name]['history_list'].append(f"Withdraw {money}")
 
-            elif choice == "deposit":
+            elif choice == 2:
+                print("\n" * 20)
                 deposit_money = int(input("How much money you want to deposit? "))
                 deposited_amount = dep_money(deposit_money, user_name)
                 print(f"You have deposited {deposit_money}PKR in Your Account")
                 users_database[user_name]['history_list'].append((f"Deposit {deposit_money}"))
 
-            elif choice == "transfer":
+            elif choice == 3:
+                print("\n" * 20)
                 transfer_money = int(input("How much money you want to transfer?"))
                 transfer_name = input("Enter the name of account you want to transfer money in")
                 transfer_amount(transfer_money,transfer_name, user_name)
 
-            elif choice == "balance":
+            elif choice == 4:
+                print("\n" * 20)
                 print(f"Your current balance is {users_database[user_name]['balance']}PKR")
 
-            history = input("Do you want to check history? 'y' or 'n'")
+            elif choice == 5:
+                print("\n" * 20)
+                history = input("Do you want to check history? 'y' or 'n'")
 
-            if history == "y":
-                for item in users_database[user_name]['history_list']:
-                    print(item)
-            else:
-                continue
+                if history == "y":
+                    for item in users_database[user_name]['history_list']:
+                        print(item)
+                else:
+                    continue
 
-            change_pin = input("Do you want to change your pin? 'y' or 'n'")
-
-            if change_pin == "y":
+            elif choice == 6:
+                print("\n" * 20)
                 currentpin = int(input("Enter your current PIN: "))
 
                 if currentpin != users_database[user_name]["PIN"]:
