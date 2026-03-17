@@ -47,6 +47,9 @@ def transfer_amount(t_money, t_name, sender_name):
         users_database[t_name]["balance"] += t_money
         users_database[sender_name]['history_list'].append(f"Transfer {t_money} to {t_name}")
 
+def changepin(oldpin, npin, user):
+    users_database[user]["PIN"] = npin
+    print("PIN Changed successfully")
 
 is_on = True
 
@@ -93,6 +96,17 @@ while is_on:
                     print(item)
             else:
                 continue
+
+            change_pin = input("Do you want to change your pin? 'y' or 'n'")
+
+            if change_pin == "y":
+                currentpin = int(input("Enter your current PIN: "))
+
+                if currentpin != users_database[user_name]["PIN"]:
+                    print("Incorrect PIN")
+
+                newpin = int(input("Please enter the new PIN"))
+                changepin(user_pin, newpin, user_name)
 
             checking = input("Do you want to perform the task again? 'y' or 'n'")
             if checking == "n":
