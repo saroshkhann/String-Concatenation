@@ -1,0 +1,12 @@
+{
+    "sarosh": {
+        "PIN": 1122,
+        "balance": 800,
+        "history_list": []
+    },
+    "abdullah": {
+        "PIN": 12345,
+        "balance": 2000,
+        "history_list": []
+    }
+}

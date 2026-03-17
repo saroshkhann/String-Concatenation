@@ -1,27 +1,28 @@
+import json
+
 print("Welcome to ATM Machine")
 
-users_database = {
-    "sarosh": {
-        "PIN": 1234,
-        "balance": 1000,
-        "history_list" : []
-    },
-    "abdullah": {
-        "PIN":12345,
-        "balance": 2000,
-        "history_list" : []
-    }
-}
+def load_data():
+    with open("data.json", "r") as file:
+        return json.load(file)
+
+users_database = load_data()
+
+def save_data(data):
+    with open("data.json", "w") as file:
+        json.dump(data, file, indent=4)
 
 def withdraw_money(money_withd, username):
     if money_withd > users_database[username]['balance']:
        print(f"Sorry you have only {users_database[username]['balance']}PKR in your account")
     else:
         users_database[username]['balance'] -= money_withd
+        save_data(users_database)
         return users_database[username]['balance']
 
 def dep_money(dep, username):
     users_database[username]['balance'] += dep
+    save_data(users_database)
     return users_database[username]['balance']
 
 def user_login():
@@ -46,9 +47,11 @@ def transfer_amount(t_money, t_name, sender_name):
         users_database[sender_name]["balance"] -= t_money
         users_database[t_name]["balance"] += t_money
         users_database[sender_name]['history_list'].append(f"Transfer {t_money} to {t_name}")
+        save_data(users_database)
 
 def changepin(oldpin, npin, user):
     users_database[user]["PIN"] = npin
+    save_data(users_database)
     print("PIN Changed successfully")
 
 def menu():
