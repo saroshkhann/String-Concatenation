@@ -16,7 +16,7 @@ user_3 = User("003", "Abdulllah")
 user_4 = User("003", "Abdulllah")
 user_5 = User("003", "Abdulllah")
 user_6 = User("003", "Abdulllah")
-
+user_7 = User("003", "Abdulllah")
 
 user_3.follow(user_1)
 
