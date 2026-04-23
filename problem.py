@@ -4,5 +4,7 @@ for num in nums:
         break
     elif num==3:
         print("Hello")
+    elif num==5:
+        print("World")
 else:
     print("Hello world")
